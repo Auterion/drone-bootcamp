@@ -1,0 +1,5 @@
+# app patch config for \`auterion-cli app patch\` command
+services:
+  precision-landing:
+    files:
+      - /opt/sysroot/app/build

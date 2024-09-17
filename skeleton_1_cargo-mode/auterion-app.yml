@@ -1,0 +1,12 @@
+auterion-api-version: 3
+auterion-app-base: v2
+
+app-name: cargo-mode-example
+app-author: com.auterion
+app-version: 0.0.1
+target-platform: [skynode, skynode-s]
+
+services:
+  cargo-mode-example:
+    ssh: true
+    build: .

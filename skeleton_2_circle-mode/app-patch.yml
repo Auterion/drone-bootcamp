@@ -1,0 +1,5 @@
+# app patch config for \`auterion-cli app patch\` command
+services:
+  circle-mode-example:
+    files:
+      - /opt/sysroot/app/build

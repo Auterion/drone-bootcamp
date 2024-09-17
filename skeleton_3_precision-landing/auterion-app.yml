@@ -1,0 +1,19 @@
+auterion-api-version: 3
+auterion-app-base: v2
+
+app-name: precision-landing
+app-author: com.auterion
+app-version: 0.0.1
+target-platform: [skynode, skynode-s]
+
+services:
+  precision-landing:
+    ssh: true
+    build: .
+
+compose-override:
+  services:
+    precision-landing:
+      network_mode: host
+      ipc: host
+      pid: host

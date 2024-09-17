@@ -1,0 +1,5 @@
+# app patch config for \`auterion-cli app patch\` command
+services:
+  goto-mode-example:
+    files:
+      - /opt/sysroot/app/build

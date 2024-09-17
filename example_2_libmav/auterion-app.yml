@@ -1,0 +1,12 @@
+auterion-api-version: 3
+auterion-app-base: v2
+
+app-name: libmav-example-mode
+app-author: com.auterion
+app-version: 0.0.1
+target-platform: [skynode, skynode-s]
+
+services:
+  libmav-example-mode:
+    ssh: true
+    build: .

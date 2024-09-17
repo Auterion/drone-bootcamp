@@ -1,0 +1,7 @@
+# app patch config for \`auterion-cli app patch\` command
+services:
+  libmav-example-mode:
+    files:
+      - /opt/sysroot/app/build
+      - /opt/sysroot/app/libmav
+      - /opt/sysroot/app/mavlink
