@@ -21,7 +21,7 @@ class MyMode {
    public:
     explicit MyMode(auterion::SDK& sdk, auterion::multicopter::GotoControlLimits& limits,
                     auterion::LocalPositionAssessorConfig& position_assessor_config)
-        : _mode(sdk, "Circle Mode", {auterion::multicopter::BodyFrameDynamicsSetpoint::Config{},
+        : _mode(sdk, "Circle Mode", {
                                     auterion::multicopter::LocalFrameDynamicsSetpoint::Config{},
                                     auterion::multicopter::LocalFrameGotoSetpoint::Config(limits)}),
           _system_state(sdk),
