@@ -24,6 +24,7 @@ class MyMode {
     /// Don't change this!!!
     auterion::Mode _mode;
     auterion::SystemState _system_state;
+    auterion::LocalPositionAssessor _local_position_assessor;
 
     std::optional<auterion::Camera> _camera;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr _image_publisher;
@@ -35,18 +36,23 @@ class MyMode {
         _ground_distance = msg.dist_bottom;
     }
 
+    // TODO #1: define your global variables here
 
-    // Start coding here 
-    bool _sim = false;
+    // Switch this depending on whether you build for sim or physical Skynode 
+    bool _sim = true;
 
     // Read parameters from the settings.default.env file (WebUI settings)
     // double _P_XY = auterion::getSetting("P_XY", 0.001); 
 
 
    public:
-    explicit MyMode(auterion::SDK& sdk, auterion::multicopter::GotoControlLimits& limits)
-        : _mode(sdk, "E.g. Precision Landing", {auterion::multicopter::LocalFrameGotoSetpoint::Config(limits)}),
-        _system_state(sdk){
+    explicit MyMode(auterion::SDK& sdk, auterion::multicopter::GotoControlLimits& limits,
+                    auterion::LocalPositionAssessorConfig& position_assessor_config)
+        : _mode(sdk, "E.g. Precision Landing", {auterion::multicopter::BodyFrameDynamicsSetpoint::Config{},
+                                                auterion::multicopter::LocalFrameDynamicsSetpoint::Config{},
+                                                auterion::multicopter::LocalFrameGotoSetpoint::Config(limits)}),
+          _system_state(sdk),
+          _local_position_assessor(_system_state, position_assessor_config) {
 
 
         /// Don't change this!!!
@@ -76,7 +82,7 @@ class MyMode {
                     cv_mat = bgr_img.clone();
                 }
 
-                // Implement you detection algorithm here
+                // TODO #4: Implement your vision-based detection algorithm here
 
 
                 // DEBUGGING: Use this to publish an image to visualize processing
@@ -95,17 +101,20 @@ class MyMode {
 
         _mode.onActivate([this]() {
             std::cout << "Precision Landing Activated!" << std::endl;
+
+            // TODO #2: Add your variables initializations here  
         });
 
         _mode.onDeactivate([]() { std::cout << "Precision Landing Deactivated!" << std::endl; });
 
         // runs at 50 Hz (dt_s = 20 ms)
         _mode.onUpdateSetpoint([this](float dt_s) -> auterion::Setpoint {       
+            
+            // TODO #5: Implement your (PID) control algorithm here
+
             // Dummy setpoint
             Eigen::Vector3f pos = {0.F , 0.F, 5.F};   
             return auterion::multicopter::LocalFrameGotoSetpoint{}.withPosition(pos);
-
-            // Implement you control algorithm here
 
         });
     }
@@ -115,6 +124,8 @@ int main(int argc, char* argv[]) {
     auterion::SDK sdk(argc, argv, "precision_landing");
 
     auto ret = rcutils_logging_set_logger_level(sdk.defaultRosHandle()->get_logger().get_name(), RCUTILS_LOG_SEVERITY_DEBUG);
+
+    // TODO #3: Set your speed limits and position assessor thresholds here if needed
 
     auterion::multicopter::GotoControlLimits goto_limits{};
     goto_limits.withMaxHorizontalSpeed(1.F).withMaxVerticalSpeed(1.F);
