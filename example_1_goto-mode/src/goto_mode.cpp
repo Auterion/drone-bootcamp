@@ -21,7 +21,7 @@ class MyMode {
    public:
     explicit MyMode(auterion::SDK& sdk, auterion::multicopter::GotoControlLimits& limits,
                     auterion::LocalPositionAssessorConfig& position_assessor_config)
-        : _mode(sdk, "Goto Example", {auterion::multicopter::LocalFrameGotoSetpoint::Config(limits)}),
+        : _mode(sdk, "Goto Mode", {auterion::multicopter::LocalFrameGotoSetpoint::Config(limits)}),
           _system_state(sdk),
           _local_position_assessor(_system_state, position_assessor_config) {
         _system_state.subscribeLocalPosition();
@@ -110,7 +110,7 @@ class MyMode {
                     setpoint.withPosition(goal_position_enu_m).withHeading(goal_heading_enu_rad);
 
                     return setpoint;
-                }
+               }
             }
 
             throw std::runtime_error("Invalid state");

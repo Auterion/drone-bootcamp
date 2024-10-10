@@ -49,7 +49,6 @@ class MyMode {
     explicit MyMode(auterion::SDK& sdk, auterion::multicopter::GotoControlLimits& limits,
                     auterion::LocalPositionAssessorConfig& position_assessor_config)
         : _mode(sdk, "E.g. Precision Landing", {auterion::multicopter::BodyFrameDynamicsSetpoint::Config{},
-                                                auterion::multicopter::LocalFrameDynamicsSetpoint::Config{},
                                                 auterion::multicopter::LocalFrameGotoSetpoint::Config(limits)}),
           _system_state(sdk),
           _local_position_assessor(_system_state, position_assessor_config) {
