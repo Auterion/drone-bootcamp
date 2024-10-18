@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dronebootcamp:
+    image: dronebootcamp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
