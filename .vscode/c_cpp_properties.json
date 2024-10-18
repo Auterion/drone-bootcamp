@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros/humble/include/",
+                "/opt/ros/humble/include/auterion_sdk/",
+                "/opt/ros/humble/include/auterion_sdk/camera/",
+                "/opt/ros/humble/include/auterion_sdk/control/",
+                "/opt/ros/humble/include/auterion_sdk/control/common/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
